@@ -1,0 +1,23 @@
+{
+  "name": "npr-player",
+  "version": "1.0.0",
+  "description": "Building a simple app with NPR's API and React",
+  "main": "app.js",
+  "dependencies": {
+    "react": "^15.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelbeaujean/npr-react.git"
+  },
+  "author": "Michael Beaujean",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelbeaujean/npr-react/issues"
+  },
+  "homepage": "https://github.com/michaelbeaujean/npr-react#readme"
+}

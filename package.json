@@ -1,7 +1,7 @@
 {
-  "name": "npr-player",
+  "name": "trending-audio-player",
   "version": "1.0.0",
-  "description": "Building a simple app with NPR's API and React",
+  "description": "Building a simple app with Audioburst's API and React",
   "main": "app.js",
   "dependencies": {
     "react": "^15.6.1",

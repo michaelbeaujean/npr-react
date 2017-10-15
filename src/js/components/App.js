@@ -1,46 +1,70 @@
 var React = require('react');
 
+const _trendingLink = "https://developersapi.audioburst.com/v2/topstories/trending?device=web",
+			_requestParams = {
+				type: "GET",
+				headers: {
+					"Ocp-Apim-Subscription-Key": "e57086af14c44cdcad48f89e3cc26f67"
+				}
+			};
+
 class App extends React.Component {
-	render() {
-		const _trendingLink = "https://developersapi.audioburst.com/v2/topstories/trending?device=web",
-					_requestParams = {
-						type: "GET",
-						headers: {
-							"Ocp-Apim-Subscription-Key": "e57086af14c44cdcad48f89e3cc26f67"
-						}
-					};
-		
+	constructor(props) {
+		super(props)
+		this.state = {
+			requestFailed: false
+		}
+	}
+
+	componentDidMount() {
 		fetch(_trendingLink, _requestParams)
 		.then( (response) => response.json() )
 		.then((responseJson) => {
 			var _response = responseJson;
 
-			for (let _i = 0; _i < _response.length; _i++) {
-				var _this = _response[_i],
-						_category = _this.category,
-						_stories = _this.stories;
-
-				console.log("Category: " + _category);
-
-				for (let _n = 0; _n < _stories.length; _n++) {
-					var _thisStory = _stories[_n],
-							_storyTitle = _thisStory.entity,
-							_bursts = _thisStory.bursts
-
-					console.log("Story: " + _storyTitle);
-
-					for (let _x = 0; _x < _bursts.length; _x++) {
-						var _thisBurst = _bursts[_x];
-
-						console.log("Burst #" + _x + ": " + _thisBurst);
-					}
-				}
-			}
+			this.setState({
+				audioburstData: _response
+			})
 		})
     .catch((error) => {
-      console.error(error);
+    	// If there's an error, set requestFailed state
+    	this.setState({
+    		requestFailed: true
+    	})
     });
-		return <h1>app</h1>
+
+	}
+	
+	render() {
+		var _failCheck = this.state.requestFailed,
+				_audioData = this.state.audioburstData,
+				_audioBatches = [];
+
+		// If request fails
+		if (_failCheck) {
+			return <p>Failed!</p>
+		} else {
+			if (!_audioData) return <p>Loading...</p>
+			return (
+				<div>
+				{_audioData.map(function(dataObj, index){
+
+					var _stories = dataObj.stories;
+
+					return (
+						<div>
+							<h1 key={index}>{dataObj.category}</h1>
+							{_stories.map(function(story, index) {
+								return <p key={index}>{story.entity}</p>
+							})}
+						</div>
+					)
+
+				})}
+
+				</div>
+			)
+		}
 	}
 };
 

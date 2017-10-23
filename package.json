@@ -1,32 +1,16 @@
 {
-  "name": "trending-audio-player",
-  "version": "1.0.0",
-  "description": "Building a simple app with Audioburst's API and React",
-  "main": "app.js",
+  "name": "test-app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-react": "^6.24.1",
-    "html-webpack-plugin": "^2.30.1",
-    "webpack": "^3.5.6",
-    "webpack-dev-server": "^2.7.1"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "1.0.14"
   },
   "scripts": {
-    "build": "webpack",
-    "serve": "webpack-dev-server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/michaelbeaujean/npr-react.git"
-  },
-  "author": "Michael Beaujean",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/michaelbeaujean/npr-react/issues"
-  },
-  "homepage": "https://github.com/michaelbeaujean/npr-react#readme"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }

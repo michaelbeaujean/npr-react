@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+		_burstStorage = [];
 
 const _trendingCall = "https://developersapi.audioburst.com/v2/topstories/trending?device=web",
 			_burstCall = "https://developersapi.audioburst.com/v2/burst?device=web&burstId=",
@@ -9,18 +10,63 @@ const _trendingCall = "https://developersapi.audioburst.com/v2/topstories/trendi
 				}
 			};
 
+class BurstItem extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = { 
+			isFetched: false,
+			burst: {}
+		}
+		this.burstFetch = this.burstFetch.bind(this);
+	}
+
+	burstFetch(burstId) {
+		fetch(_burstCall + burstId, _apiCallParams)
+		.then( (response) => response.json() )	
+		.then((responseJson) => {
+			var _burstResponse = responseJson;
+
+			this.setState({ burst: _burstResponse })
+		})
+
+		this.setState({ isFetched: true })
+	}	
+
+	render() {
+		var _burstDetails = null;
+
+		if (this.state.isFetched) {
+			var _audioURL = this.state.burst.bursts[0].contentURLs.audioURL;
+
+			_burstDetails = (
+				<div>
+					<audio controls autoPlay>
+						<source src={_audioURL} type="audio/mp3" />
+					</audio>
+				</div>
+			)
+		}
+
+		return (
+			<div>
+				<p onClick={ () => this.burstFetch(this.props.burst) }>{this.props.entity}</p>
+				{_burstDetails}
+			</div>
+		)
+	}
+}
+
 class App extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			requestFailed: false
-		}
+		this.state = { requestFailed: false };
 	}
 
 	componentDidMount() {
 		fetch(_trendingCall, _apiCallParams)
 		.then( (response) => response.json() )
 		.then((responseJson) => {
+
 			var _response = responseJson;
 
 			this.setState({
@@ -28,41 +74,16 @@ class App extends React.Component {
 				trendingObjects: []
 			})
 
-			var _data = this.state.audioburstData,
+			let _data = this.state.audioburstData,
 					_dataArray = [];
 
 			_data.map(function(dataObj) {
 				var _category = dataObj.category,
 						_stories = dataObj.stories,
-						_mainObj = {};
-
-				_stories.map(function(story) {
-					var _this = story,
-							_bursts = _this.bursts,
-							_storyObj = {
-								storySubject: _this.entity,
-								storyDetails: []
-							};
-
-					_bursts.map(function(burstId) {
-
-						fetch(_burstCall + burstId, _apiCallParams)
-						.then( (response) => response.json() )
-						.then((responseJson) => {
-							var _burstResponse = responseJson;
-
-							console.log(_burstResponse);
-
-						})
-						
-					});
-
-				});						
-
-				_mainObj = {
-					category: _category,
-					stories: []
-				}
+						_mainObj = { 
+							category: _category, 
+							stories: []
+						};
 
 				_dataArray.push(_mainObj);
 			});
@@ -71,7 +92,6 @@ class App extends React.Component {
 			if (_dataArray)
 				this.setState({ trendingObjects: _dataArray })
 
-			console.log(this.state.trendingObjects);
 		})
     .catch((error) => {
     	// If there's an error, set requestFailed state
@@ -85,7 +105,10 @@ class App extends React.Component {
 	render() {
 		var _failCheck = this.state.requestFailed,
 				_audioData = this.state.audioburstData,
-				_audioBatches = [];
+				_audioBatches = [],
+				_randomNumber = function _randomNumber(min, max) {
+											    return Math.round(Math.random() * (max - min) + min);
+												};
 
 		// If request fails
 		if (_failCheck) return <p>Failed!</p>
@@ -101,12 +124,19 @@ class App extends React.Component {
 					<div>
 						<h1 key={index}>{dataObj.category}</h1>
 						{_stories.map(function(story, index) {
-							return <p key={index}>{story.entity}</p>
-						})}
+							var _totalStories = story.bursts.length,
+									_randomStorySelector = _randomNumber(0, _totalStories - 1);
+
+							return (
+							<div>
+								<BurstItem key={index} burst={story.bursts[_randomStorySelector]} entity={story.entity} />
+							</div>
+							)
+						}, this)}
 					</div>
 				)
 
-			})}
+			}, this)}
 
 			</div>
 		)

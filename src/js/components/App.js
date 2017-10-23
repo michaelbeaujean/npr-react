@@ -1,5 +1,4 @@
-var React = require('react'),
-		_burstStorage = [];
+var React = require('react');
 
 const _trendingCall = "https://developersapi.audioburst.com/v2/topstories/trending?device=web",
 			_burstCall = "https://developersapi.audioburst.com/v2/burst?device=web&burstId=",
@@ -106,9 +105,7 @@ class App extends React.Component {
 		var _failCheck = this.state.requestFailed,
 				_audioData = this.state.audioburstData,
 				_audioBatches = [],
-				_randomNumber = function _randomNumber(min, max) {
-											    return Math.round(Math.random() * (max - min) + min);
-												};
+				_randomNumber = function _randomNumber(min, max) { return Math.round(Math.random() * (max - min) + min); };
 
 		// If request fails
 		if (_failCheck) return <p>Failed!</p>

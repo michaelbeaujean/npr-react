@@ -35,10 +35,19 @@ class BurstItem extends React.Component {
 		var _burstDetails = null;
 
 		if (this.state.isFetched) {
-			var _audioURL = this.state.burst.bursts[0].contentURLs.audioURL;
+			var _burst = this.state.burst.bursts[0],
+					_showName = _burst.source.showName,
+					_title = _burst.title,
+					_date = _burst.publicationDateISO,
+					_text = _burst.text,
+					_audioURL = _burst.contentURLs.audioURL;
 
 			_burstDetails = (
 				<div>
+					<h3>{_showName}</h3>
+					<h4>{_title}</h4>
+					<p>{_date}</p>
+					<p>{_text}</p>
 					<audio controls autoPlay>
 						<source src={_audioURL} type="audio/mp3" />
 					</audio>

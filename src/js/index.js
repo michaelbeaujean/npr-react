@@ -1,8 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var App = require('./components/App');
+
+import { BurstList } from './components/BurstList';
 
 ReactDOM.render(
-	<App />,
-	document.getElementById('app')
+	<BurstList />,
+	document.getElementById('burstList')
 );

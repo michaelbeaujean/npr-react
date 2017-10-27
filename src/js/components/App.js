@@ -34,7 +34,7 @@ class BurstItem extends React.Component {
 	render() {
 		var _burstDetails = null;
 
-		if (this.state.isFetched) {
+		if (this.state.isFetched && this.state.burst.bursts !== undefined) {
 			var _burst = this.state.burst.bursts[0],
 					_showName = _burst.source.showName,
 					_title = _burst.title,
@@ -113,7 +113,6 @@ class App extends React.Component {
 	render() {
 		var _failCheck = this.state.requestFailed,
 				_audioData = this.state.audioburstData,
-				_audioBatches = [],
 				_randomNumber = function _randomNumber(min, max) { return Math.round(Math.random() * (max - min) + min); };
 
 		// If request fails

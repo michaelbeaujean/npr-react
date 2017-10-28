@@ -1,15 +1,15 @@
 var React = require('react');
 
-const _trendingCall = "https://developersapi.audioburst.com/v2/topstories/trending?device=web";
-const _burstCall = "https://developersapi.audioburst.com/v2/burst?device=web&burstId=";
-const _apiCallParams = {
+const _audioburstTrendingUrl = "https://developersapi.audioburst.com/v2/topstories/trending?device=web";
+const _audioburstBurstUrl = "https://developersapi.audioburst.com/v2/burst?device=web&burstId=";
+const _audioburstApiParams = {
 	type: "GET",
 	headers: {
 		"Ocp-Apim-Subscription-Key": "e57086af14c44cdcad48f89e3cc26f67"
 	}
 };
 
-import { BurstItem } from './BurstItem';
+import { BurstItem, randomNumber } from './BurstItem';
 
 export class BurstList extends React.Component {
 	constructor(props) {
@@ -21,7 +21,7 @@ export class BurstList extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch(_trendingCall, _apiCallParams)
+		fetch(_audioburstTrendingUrl, _audioburstApiParams)
 		.then( (response) => response.json() )
 		.then((responseJson) => {
 
@@ -61,7 +61,7 @@ export class BurstList extends React.Component {
 	}
 
 	burstFetch(burstId) {
-		fetch(_burstCall + burstId, _apiCallParams)
+		fetch(_audioburstBurstUrl + burstId, _audioburstApiParams)
 		.then( (response) => response.json() )	
 		.then((responseJson) => {
 			var _burstResponse = responseJson;
@@ -95,8 +95,7 @@ export class BurstList extends React.Component {
 
 	render() {
 		var _failCheck = this.state.requestFailed,
-				_audioData = this.state.audioburstData,
-				_randomNumber = function _randomNumber(min, max) { return Math.round(Math.random() * (max - min) + min); };
+				_audioData = this.state.audioburstData;
 
 		// If request fails
 		if (_failCheck) return <p>Failed!</p>
@@ -117,7 +116,7 @@ export class BurstList extends React.Component {
 						<h1 key={index}>{dataObj.category}</h1>
 						{_stories.map(function(story, index) {
 							var _totalStories = story.bursts.length,
-									_randomStorySelector = _randomNumber(0, _totalStories - 1);
+									_randomStorySelector = randomNumber(0, _totalStories - 1);
 
 							return (
 							<div>

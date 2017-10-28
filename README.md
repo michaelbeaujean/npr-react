@@ -1,5 +1,11 @@
 # Trending Audio Player
 
-An app to pull in trending topics and corresponding audio content with the [Audioburst API](https://developers.audioburst.com/) and [React](https://reactjs.org/).
+An app to pull in trending topics and corresponding audio content. 
+
+
+Built with:
+* [React](https://reactjs.org/)
+* [Audioburst API](https://developers.audioburst.com/)
+* [Imgur API](https://api.imgur.com/)
 
 [Live URL](https://buzzwav.herokuapp.com/)

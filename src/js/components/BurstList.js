@@ -104,6 +104,8 @@ export class BurstList extends React.Component {
 		
 		return (
 			<div>
+				<h3>{this.state.activeShowName}</h3>
+				<p>{this.state.activeDate}</p>
 				<audio controls autoPlay ref="audio">
 					<source src={this.state.activeBurstURL} type="audio/mp3" />
 				</audio>

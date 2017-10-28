@@ -6,11 +6,26 @@
 	<title>Trending Audio App</title>
 	<link rel="stylesheet" href="">
 	<style>
+		* {
+			box-sizing: border-box;
+		}
 		.burstItem {
+			display: inline-block;
+			vertical-align: top;
 			cursor: pointer;
 		}
 		.burstItem img {
 			max-width: 300px;
+		}
+		.playerContainer {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			background: #989393;
+		}
+		.playerContainer audio {
+			width: 50%;
 		}
 	</style>
 </head>

@@ -49,7 +49,7 @@ export class BurstItem extends React.Component {
 		var _burstDetails = null;
 
 		return (
-			<div className="burstItem" onClick={this.props.clickHandler}>
+			<div onClick={this.props.clickHandler}>
 				<p>{this.props.entity}</p>
 				<img src={this.state.imageURL} />
 			</div>

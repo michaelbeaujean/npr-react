@@ -103,32 +103,35 @@ export class BurstList extends React.Component {
 		
 		return (
 			<div>
-				<h3>{this.state.activeShowName}</h3>
-				<p>{this.state.activeDate}</p>
-				<audio controls autoPlay ref="audio">
-					<source src={this.state.activeBurstURL} type="audio/mp3" />
-				</audio>
-			{_audioData.map(function(dataObj, index){
-				var _stories = dataObj.stories;
+				<div className="playerContainer">
+					<h3>{this.state.activeShowName}</h3>
+					<p>{this.state.activeDate}</p>
+					<audio controls autoPlay ref="audio" id="player">
+						<source src={this.state.activeBurstURL} type="audio/mp3" />
+					</audio>
+				</div>
+				<div className="burstContainer">
+					{_audioData.map(function(dataObj, index){
+						var _stories = dataObj.stories;
 
-				return (
-					<div>				
-						<h1 key={index}>{dataObj.category}</h1>
-						{_stories.map(function(story, index) {
-							var _totalStories = story.bursts.length,
-									_randomStorySelector = randomNumber(0, _totalStories - 1);
+						return (
+							<div className="burstItem">				
+								<h1 key={index}>{dataObj.category}</h1>
+								{_stories.map(function(story, index) {
+									var _totalStories = story.bursts.length,
+											_randomStorySelector = randomNumber(0, _totalStories - 1);
 
-							return (
-							<div>
-								<BurstItem clickHandler={ () => this.burstFetch(story.bursts[_randomStorySelector]) } key={index} burst={story.bursts[_randomStorySelector]} entity={story.entity} />
+									return (
+									<div>
+										<BurstItem clickHandler={ () => this.burstFetch(story.bursts[_randomStorySelector]) } key={index} burst={story.bursts[_randomStorySelector]} entity={story.entity} />
+									</div>
+									)
+								}, this)}
 							</div>
-							)
-						}, this)}
-					</div>
-				)
+						)
 
-			}, this)}
-
+					}, this)}
+				</div>
 			</div>
 		)
 	}

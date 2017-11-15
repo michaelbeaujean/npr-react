@@ -1,0 +1,12 @@
+//----------------------------------*\
+// BREAKPOINTS
+//----------------------------------*/
+$breakpoints: (
+  bp-xs: (max-width: 479px),
+  bp-s: (max-width: 639px),
+  bp-m: (max-width: 959px),
+  bp-l: (min-width: 960px),
+  bp-xl: (min-width: 1280px)
+);
+
+// Width limit for bursts: 934px

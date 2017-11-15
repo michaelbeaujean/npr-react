@@ -3,4 +3,18 @@
 //----------------------------------*/
 @import "sassPartials/_normalize";
 
-@import "sassPartials/_base";
+//----------------------------------*\
+// Variables
+//----------------------------------*/
+@import "sassPartials/_breakpoints";
+
+//----------------------------------*\
+// Layout
+//----------------------------------*/
+@import "sassPartials/_layout";
+
+//----------------------------------*\
+// Components
+//----------------------------------*/
+@import "sassPartials/_bursts";
+@import "sassPartials/_player";

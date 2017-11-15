@@ -1,0 +1,13 @@
+.playerContainer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background: #dadada;
+}
+.playerContainer * {
+	color: #000000;
+}
+.playerContainer audio {
+	width: 50%;
+}

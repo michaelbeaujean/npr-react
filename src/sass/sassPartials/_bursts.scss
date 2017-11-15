@@ -1,0 +1,31 @@
+.burstContainer {
+	display: flex;
+	// flex-direction: row;
+	// justify-content: space-between;
+	flex-wrap: wrap;
+	width: 934px;
+	margin: 0 auto;
+}
+.burstItem {
+	// background: #864be4;
+	// background: -webkit-linear-gradient(to right, #38a6f3, #864be4);  
+	// background: linear-gradient(to right, #38a6f3, #864be4);
+}
+.burstItem h1 {
+	color: #ffffff;
+	padding-left: 10px;
+}
+.burstItem p {
+	color: #000000;
+}
+.burst {
+	cursor: pointer;
+	// margin: 10px;
+	padding: 10px;
+	background-color: #dadada;
+	border-radius: 8px;	
+}
+.burst img {
+	width: 80%;
+	max-width: 300px;
+}

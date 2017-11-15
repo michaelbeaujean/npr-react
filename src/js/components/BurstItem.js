@@ -25,8 +25,6 @@ export class BurstItem extends React.Component {
 		fetch(_imgurSearchUrl + this.props.entity, _imgurApiParams)
 		.then( (response) => response.json() )
 		.then( (responseJson) => {
-			// console.log(responseJson);
-			// console.count("imageFetch running")
 
 			var _responseJson = responseJson,
 					_responseItems = _responseJson.data.items,

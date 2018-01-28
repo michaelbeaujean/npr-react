@@ -11,20 +11,6 @@ const _audioburstApiParams = {
 
 import { BurstItem, randomNumber } from './BurstItem';
 
-Array.prototype.shuffle = function() {
-    var input = this;
-     
-    for (var i = input.length-1; i >=0; i--) {
-     
-        var randomIndex = Math.floor(Math.random()*(i+1)); 
-        var itemAtIndex = input[randomIndex]; 
-         
-        input[randomIndex] = input[i]; 
-        input[i] = itemAtIndex;
-    }
-    return input;
-}
-
 export class BurstList extends React.Component {
 	constructor(props) {
 		super(props)
@@ -37,35 +23,33 @@ export class BurstList extends React.Component {
 	componentDidMount() {
 		fetch(_audioburstTrendingUrl, _audioburstApiParams)
 		.then( (response) => response.json() )
-		.then( (responseJson) => {
+		.then((responseJson) => {
 
 			var _response = responseJson;
 
 			this.setState({
-				audioburstData: _response
+				audioburstData: _response,
+				trendingObjects: []
 			})
 
-		})
-		.then( () => {
-			var _audioburstData = this.state.audioburstData,
-					_storyArr = [];
+			let _data = this.state.audioburstData,
+					_dataArray = [];
 
-			_audioburstData.map(function(dataObj, index){
-				var _stories = dataObj.stories;
+			_data.map(function(dataObj) {
+				var _category = dataObj.category,
+						_stories = dataObj.stories,
+						_mainObj = { 
+							category: _category, 
+							stories: []
+						};
 
-				_stories.map(function(story, index){
-					var _totalStories = story.bursts.length,
-							_randomStorySelector = randomNumber(0, _totalStories - 1);
-
-					_storyArr.push(
-						<BurstItem clickHandler={ () => this.burstFetch(story.bursts[_randomStorySelector]) } burst={story.bursts[_randomStorySelector]} entity={story.entity} />
-					);
-				});
+				_dataArray.push(_mainObj);
 			});
 
-			var _randomStories = _storyArr.shuffle();
 
-			this.setState({ allStories: _randomStories });
+			if (_dataArray)
+				this.setState({ trendingObjects: _dataArray })
+
 		})
     .catch((error) => {
     	// If there's an error, set requestFailed state
@@ -111,8 +95,7 @@ export class BurstList extends React.Component {
 
 	render() {
 		var _failCheck = this.state.requestFailed,
-				_audioData = this.state.audioburstData,
-				_allStories = this.state.allStories;
+				_audioData = this.state.audioburstData;
 
 		// If request fails
 		if (_failCheck) return <p>Failed!</p>
@@ -128,7 +111,26 @@ export class BurstList extends React.Component {
 					</audio>
 				</div>
 				<div className="burstContainer">
-					{_allStories}
+					{_audioData.map(function(dataObj, index){
+						var _stories = dataObj.stories;
+
+						return (
+							<div className="burstItem">				
+								<h1 key={index}>{dataObj.category}</h1>
+								{_stories.map(function(story, index) {
+									var _totalStories = story.bursts.length,
+											_randomStorySelector = randomNumber(0, _totalStories - 1);
+
+									return (
+									<div>
+										<BurstItem clickHandler={ () => this.burstFetch(story.bursts[_randomStorySelector]) } key={index} burst={story.bursts[_randomStorySelector]} entity={story.entity} />
+									</div>
+									)
+								}, this)}
+							</div>
+						)
+
+					}, this)}
 				</div>
 			</div>
 		)

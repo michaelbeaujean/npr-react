@@ -8,4 +8,4 @@ Built with:
 * [Audioburst API](https://developers.audioburst.com/)
 * [Imgur API](https://api.imgur.com/)
 
-[Live URL](https://buzzwav.herokuapp.com/)
+[Live URL](https://trending-audio.herokuapp.com/)

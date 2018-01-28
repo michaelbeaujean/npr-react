@@ -3,10 +3,11 @@
 	bottom: 0;
 	width: 100%;
 	text-align: center;
-	background: #dadada;
+	background: #000;
+	z-index: 100;
 }
 .playerContainer * {
-	color: #000000;
+	color: #fff;
 }
 .playerContainer audio {
 	width: 50%;

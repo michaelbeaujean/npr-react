@@ -98,8 +98,8 @@ export class BurstList extends React.Component {
 				_audioData = this.state.audioburstData;
 
 		// If request fails
-		if (_failCheck) return <p>Failed!</p>
-		if (!_audioData) return <p>Loading...</p>
+		if (_failCheck) return <p className="message message-failed">Failed!</p>
+		if (!_audioData) return <p className="message message-loading">Loading...</p>
 		
 		return (
 			<div>

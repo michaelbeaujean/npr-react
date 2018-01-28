@@ -4,10 +4,18 @@
 	width: 75%;
 	margin: 0 auto;
 	padding-bottom: 25%;
+
+	@include bp(bp-m) {
+		width: 95%;
+	}
 }
 .burstItem {
 	width: 25%;
 	align-self: flex-start;
+
+	@include bp(bp-m) {
+		width: 100%;
+	}	
 }
 .burstItem h1 {
 	color: #ffffff;
@@ -30,5 +38,4 @@
 }
 .burst .burstImage {
 	width: 100%;
-	max-width: 300px;
 }

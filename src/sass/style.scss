@@ -1,12 +1,17 @@
 //----------------------------------*\
-// Normalize
+// Mixins
 //----------------------------------*/
-@import "sassPartials/_normalize";
+@import "sassPartials/_mixins";
 
 //----------------------------------*\
 // Variables
 //----------------------------------*/
 @import "sassPartials/_breakpoints";
+
+//----------------------------------*\
+// Normalize
+//----------------------------------*/
+@import "sassPartials/_normalize";
 
 //----------------------------------*\
 // Layout

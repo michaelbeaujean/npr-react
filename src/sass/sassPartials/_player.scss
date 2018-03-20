@@ -3,8 +3,21 @@
 	bottom: 0;
 	width: 100%;
 	text-align: center;
-	background: #000;
 	z-index: 100;
+
+	h3, p, audio {
+		position: relative;
+		z-index: 100;
+	}
+}
+.playerContainer__bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.9;
 }
 .playerContainer * {
 	color: #fff;

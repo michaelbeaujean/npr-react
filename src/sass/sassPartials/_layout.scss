@@ -2,10 +2,13 @@
 	box-sizing: border-box;
 }
 body {
-	background: #272725;
+	background: #171a20;
 	color: #ffffff;
-	font-family: 'Scope One', Georgia, serif;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	font-size: 17px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;	
+	font-smooth: always;
 }
 .masthead {
 	text-align: center;

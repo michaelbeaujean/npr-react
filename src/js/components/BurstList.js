@@ -104,6 +104,8 @@ export class BurstList extends React.Component {
 		return (
 			<div>
 				<div className="playerContainer">
+					<div className="playerContainer__bg">
+					</div>
 					<h3>{this.state.activeShowName}</h3>
 					<p>{this.state.activeDate}</p>
 					<audio controls autoPlay ref="audio" id="player">
@@ -116,7 +118,7 @@ export class BurstList extends React.Component {
 
 						return (
 							<div className="burstItem">				
-								<h1 key={index}>{dataObj.category}</h1>
+								<h2 key={index}>{dataObj.category}</h2>
 								{_stories.map(function(story, index) {
 									var _totalStories = story.bursts.length,
 											_randomStorySelector = randomNumber(0, _totalStories - 1);

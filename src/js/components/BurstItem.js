@@ -39,6 +39,10 @@ export class BurstItem extends React.Component {
 		})
     .catch((error) => {
     	console.log("image fetch error");
+
+    	this.setState({
+    		imageURL: "http://michaelbeaujean.com/images/portfolio/trending-react@2x.jpg"
+    	})
     });
 	}	
 
@@ -46,7 +50,7 @@ export class BurstItem extends React.Component {
 		var _burstDetails = null;
 
 		return (
-			<div className="burst" onClick={this.props.clickHandler}>
+			<div onClick={this.props.clickHandler}>
 				<h3 className="burstName">{this.props.entity}</h3>
 				<img className="burstImage" src={this.state.imageURL} />
 			</div>

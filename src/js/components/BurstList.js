@@ -117,14 +117,14 @@ export class BurstList extends React.Component {
 						var _stories = dataObj.stories;
 
 						return (
-							<div className="burstItem">				
-								<h2 key={index}>{dataObj.category}</h2>
+							<div className="burstItem">
+								
 								{_stories.map(function(story, index) {
 									var _totalStories = story.bursts.length,
 											_randomStorySelector = randomNumber(0, _totalStories - 1);
 
 									return (
-									<div>
+									<div className="burst">
 										<BurstItem clickHandler={ () => this.burstFetch(story.bursts[_randomStorySelector]) } key={index} burst={story.bursts[_randomStorySelector]} entity={story.entity} />
 									</div>
 									)
